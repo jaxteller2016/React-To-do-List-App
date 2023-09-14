@@ -1,0 +1,208 @@
+.App-container h1,
+h3 {
+  margin-top: 20px;
+  text-align: center;
+}
+
+body {
+  background: linear-gradient(#614bc3, #9198e5);
+  height: 100vh;
+}
+
+.container {
+  margin-top: 130px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.date-container {
+  flex-direction: column;
+  margin-left: 50px;
+}
+
+.task-list-container {
+  margin-top: 30px;
+  width: 500px;
+  height: auto; /* Reset the height */
+  min-height: 500px;
+  background-color: #33bbc5;
+  display: flex;
+  justify-content: center;
+  align-items: top;
+  border-radius: 30px;
+}
+
+.task-list-container li {
+  margin-top: 20px;
+  padding: 15px 20px;
+  flex-direction: column;
+  color: #fff;
+  background-color: #614bc3;
+  border-radius: 100px;
+  width: 350px;
+}
+
+.task-list-container.with-tasks {
+  /* Additional styling when there are tasks */
+  /* min-height: auto; Reset the minimum height */
+  height: fit-content; /* Allow the container to grow with content */
+  padding-bottom: 20px;
+}
+
+.list {
+  margin-top: 30px;
+  text-decoration: none;
+  list-style-type: none;
+}
+
+.button-add {
+  margin-top: 50px;
+}
+
+.buttons button {
+  border: none;
+  cursor: pointer;
+  padding: 10px 15px;
+  border-radius: 100px;
+  font-size: 14px;
+  font-weight: bold;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.buttons button span {
+  font-size: 16px;
+  line-height: 1;
+}
+
+/* .react-datepicker-wrapper, */
+/* .react-datepicker__input-container, */
+.react-datepicker__input-container input {
+  font-size: 14px;
+  margin-top: 20px;
+  padding: 10px 15px;
+  display: flex;
+  height: 35px;
+  align-items: center;
+  background-color: #c8ffe0;
+  border-radius: 100px;
+  width: 150px;
+  color: #614bc3;
+  font-weight: bold;
+}
+
+/* Styles for TaskModal */
+.TaskModal {
+  /* Define styles for the modal container */
+  background-color: #33bbc5;
+  border-radius: 10px;
+  padding: 20px;
+  width: 300px;
+  max-width: 80%;
+  margin: 0 auto;
+  text-align: center;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.TaskModal h2 {
+  /* Styles for the modal title */
+  font-size: 20px;
+  color: #fff;
+}
+
+.TaskModal form {
+  /* Styles for the form within the modal */
+  margin-top: 20px;
+  color: #fff;
+}
+
+.TaskModal label {
+  /* Styles for labels within the form */
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.TaskModal input[type='text'] {
+  /* Styles for the text input within the form */
+  width: 100%;
+  margin-top: 20px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.TaskModal button[type='submit'],
+.TaskModal button[type='button'] {
+  /* Styles for buttons within the modal */
+  margin-top: 20px;
+  padding: 10px 15px;
+  background-color: #614bc3;
+  color: #fff;
+  border: none;
+  border-radius: 100px;
+  cursor: pointer;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: transparent;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #333; /* Color of the "x" character */
+}
+
+.close-button:focus {
+  outline: none; /* Remove focus outline */
+}
+
+.ReactModal__Overlay.ReactModal__Overlay--after-open {
+  background-color: rgba(0, 0, 0, 0.75) !important;
+}
+
+.task-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.delete-button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  margin-left: 0.5rem;
+}
+
+.edit-button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  margin-left: 0.5rem;
+}
+
+.trash-icon {
+  color: lightcoral;
+  font-size: 1rem; /* Adjust the size as needed */
+}
+
+.edit-icon {
+  color: white;
+  font-size: 1rem;
+}
+
+.status {
+  background-color: #c8ffe0;
+  border-radius: 100px;
+}
