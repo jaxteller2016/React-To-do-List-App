@@ -207,7 +207,7 @@ export default function App() {
       </div>
       {modalType === 'edit' && (
         <TaskFormModal
-          isOpen={true} // You can also use a separate state for this modal if needed
+          isOpen={true}
           onRequestClose={handleEditModalClose}
           onSubmit={handleEditTaskSubmit}
           task={editedTask}
@@ -218,7 +218,7 @@ export default function App() {
       )}
       {modalType === 'add' && (
         <TaskFormModal
-          isOpen={true} // You can also use a separate state for this modal if needed
+          isOpen={true}
           onRequestClose={handleCloseModal}
           onSubmit={handleSubmitTask}
           taskName={taskName}

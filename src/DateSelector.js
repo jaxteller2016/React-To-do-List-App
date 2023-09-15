@@ -14,7 +14,8 @@ function DateSelector({ selectedDate, setSelectedDate }) {
       <DatePicker
         selected={selectedDate}
         onChange={handleDateChange}
-        dateFormat='dd/MM/yyyy' // You can customize the date format
+        dateFormat='dd/MM/yyyy'
+        className='picker'
       />
       {selectedDate && (
         <p style={{ paddingTop: '15px' }}>
