@@ -14,6 +14,10 @@ export default function App() {
   const [taskName, setTaskName] = useState('');
   const [loading, setLoading] = useState(true); // Added loading state
 
+  const [consent, setConsent] = useState(false); // Add consent state
+  const [email, setEmail] = useState(''); // Add email state
+  const [showEmailModal, setShowEmailModal] = useState(false); // Add email modal state
+
   const filteredTasks = tasksState[selectedDate?.toDateString()] || [];
 
   // Load tasks and selected date from local storage on initial render
@@ -160,6 +164,54 @@ export default function App() {
     handleEditModalClose();
   };
 
+  const handleConsentChange = (e) => {
+    setConsent(e.target.checked);
+    if (e.target.checked) {
+      setShowEmailModal(true);
+      setModalType('email'); // Set modalType to 'email' when the checkbox is checked
+    }
+  };
+
+  const handleEmailChange = (e) => {
+    const newEmail = e.target.value;
+    setEmail(newEmail);
+  };
+
+  const handleEmailModalClose = () => {
+    setShowEmailModal(false);
+  };
+
+  const handleEmailModalSubmit = () => {
+    // Validate the email format
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(email)) {
+      alert('Please enter a valid email address.');
+      return;
+    }
+
+    // Send the email consent and email address to the backend
+    fetch('http://localhost:3001/send-email', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        email,
+        tasks: filteredTasks,
+        selectedDate: selectedDate.toDateString()
+      })
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        alert(data.message);
+        setShowEmailModal(false);
+      })
+      .catch((error) => {
+        console.error('Error sending email consent:', error);
+        alert('An error occurred while sending the email consent.');
+      });
+  };
+
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -168,6 +220,16 @@ export default function App() {
     <div className='App-container'>
       <h1>Welcome to your To-Do List App</h1>
       <h3>Manage and add new tasks</h3>
+      <div className='consent'>
+        <label>
+          <input
+            type='checkbox'
+            checked={consent}
+            onChange={handleConsentChange}
+          />
+          I agree to receive my tasks by email
+        </label>
+      </div>
       <div className='container'>
         <div className='date-container'>
           <DateSelector
@@ -187,6 +249,7 @@ export default function App() {
             </div>
           )}
         </div>
+
         {selectedDate && isDateInThePast(selectedDate) ? (
           <RenderTasks
             selectedDate={selectedDate}
@@ -214,6 +277,7 @@ export default function App() {
           taskName={taskName}
           isEdit={true}
           onTaskNameChange={handleTaskNameChange}
+          title='Edit task'
         />
       )}
       {modalType === 'add' && (
@@ -223,6 +287,18 @@ export default function App() {
           onSubmit={handleSubmitTask}
           taskName={taskName}
           onTaskNameChange={handleTaskNameChange}
+          title='Add new Task'
+        />
+      )}
+      {modalType === 'email' && (
+        <TaskFormModal
+          isOpen={showEmailModal}
+          onRequestClose={handleEmailModalClose}
+          onSubmit={handleEmailModalSubmit}
+          onEmailChange={handleEmailChange}
+          isEdit={false}
+          email={email}
+          title='Enter your email address'
         />
       )}
     </div>

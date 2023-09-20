@@ -10,7 +10,7 @@ body {
 }
 
 .container {
-  margin-top: 130px;
+  margin-top: 60px;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -24,7 +24,7 @@ body {
 
 .task-list-container {
   margin-top: 30px;
-  width: 500px;
+  width: 600px;
   height: auto; /* Reset the height */
   min-height: 500px;
   background-color: #33bbc5;
@@ -46,7 +46,7 @@ body {
   color: #fff;
   background-color: #614bc3;
   border-radius: 100px;
-  width: 350px;
+  width: 450px;
 }
 
 .task-list-container.with-tasks {
@@ -217,4 +217,13 @@ body {
   border: solid;
   border-width: thick;
   cursor: pointer;
+}
+
+.consent {
+  margin-top: 65px;
+  text-align: center;
+}
+
+.consent input {
+  margin-right: 10px;
 }

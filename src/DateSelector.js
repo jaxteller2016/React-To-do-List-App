@@ -19,7 +19,10 @@ function DateSelector({ selectedDate, setSelectedDate }) {
       />
       {selectedDate && (
         <p style={{ paddingTop: '15px' }}>
-          Selected Date: {selectedDate.toDateString()}
+          Selected Date:
+          <br />
+          <br />
+          {selectedDate.toDateString()}
         </p>
       )}
     </div>

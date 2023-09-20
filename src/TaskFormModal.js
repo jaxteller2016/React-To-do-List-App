@@ -10,7 +10,10 @@ function TaskFormModal({
   task,
   isEdit,
   taskName,
-  onTaskNameChange
+  onTaskNameChange,
+  onEmailChange,
+  title,
+  email
 }) {
   const inputRef = useRef(null);
 
@@ -23,8 +26,17 @@ function TaskFormModal({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit(taskName);
-    onTaskNameChange('');
+    if (onTaskNameChange) {
+      // Call onTaskNameChange if it's provided
+      onTaskNameChange(taskName);
+      onSubmit(taskName);
+      onTaskNameChange('');
+    }
+    if (onEmailChange && email) {
+      // Call onEmailChange if it's provided and email is defined
+      onSubmit();
+    }
+
     onRequestClose();
   };
 
@@ -38,14 +50,20 @@ function TaskFormModal({
       <button onClick={onRequestClose} className='close-button'>
         &times;
       </button>
-      <h2>{isEdit ? 'Edit Task' : 'Add New Task'}</h2> {/* Updated title */}
+      <h2>{title}</h2> {/* Updated title */}
       <form onSubmit={handleSubmit}>
         <label>
-          Task Name:
+          {onTaskNameChange ? 'Task Name' : 'Email Address'}:
           <input
             type='text'
-            value={taskName}
-            onChange={(e) => onTaskNameChange(e.target.value)}
+            value={isEdit ? taskName : email}
+            onChange={(e) => {
+              if (onTaskNameChange && !email) {
+                onTaskNameChange(e.target.value);
+              } else if (onEmailChange && !taskName) {
+                onEmailChange(e);
+              }
+            }}
             ref={inputRef}
             autoFocus
           />
