@@ -190,7 +190,7 @@ export default function App() {
     }
 
     // Send the email consent and email address to the backend
-    fetch('http://localhost:3001/send-email', {
+    fetch('https://email-sender-kmsn.onrender.com/send-email', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
