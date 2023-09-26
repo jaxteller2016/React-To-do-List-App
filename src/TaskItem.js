@@ -11,7 +11,6 @@ export default function TaskItem({
 
   const handleStatusChange = (e) => {
     const newStatus = e.target.value;
-    console.log(newStatus);
     setSelectedStatus(newStatus);
     onUpdateStatus(newStatus);
   };
@@ -20,10 +19,33 @@ export default function TaskItem({
     onDeleteTask(task.id);
   };
 
+  // Calculate the CSS class based on the selected status
+  const getStatusClass = () => {
+    switch (selectedStatus) {
+      case 'Not started':
+        return 'not-started-bg';
+      case 'In progress':
+        return 'in-progress-bg';
+      case 'Completed':
+        return 'completed-bg';
+      default:
+        return '';
+    }
+  };
+
+  const statusClass = getStatusClass();
+  const textDecorationStyle =
+    selectedStatus === 'Completed' ? 'line-through' : 'none';
+
   return (
-    <li className='list-item'>
+    <li className={`list-item ${statusClass}`}>
       <div className='task-content'>
-        <span>👉🏼 {task.name}</span>
+        <div>
+          <span>👉🏼 </span>
+          <span style={{ textDecoration: textDecorationStyle }}>
+            {task.name}
+          </span>
+        </div>
         <div>
           <select
             value={selectedStatus}

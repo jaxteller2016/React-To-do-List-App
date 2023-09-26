@@ -227,3 +227,15 @@ body {
 .consent input {
   margin-right: 10px;
 }
+
+.not-started-bg {
+  background: linear-gradient(to right, #614bc3, #834b3f);
+}
+
+.in-progress-bg {
+  background: linear-gradient(to right, #614bc3, #55f655);
+}
+
+.completed-bg {
+  background: linear-gradient(to right, #526d82, #9db2bf);
+}
